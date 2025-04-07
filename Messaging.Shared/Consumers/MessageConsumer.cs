@@ -5,6 +5,7 @@ using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System;
 using System.Text;
+using System.Text.Json;
 
 namespace Messaging.Shared.Consumers
 {
@@ -19,18 +20,19 @@ namespace Messaging.Shared.Consumers
             _logger = logger;
         }
 
-#pragma warning disable
-        public async void Consume(string queueName, Action<string> onMessageReceived)
+        // Existing code...
+
+        public void Consume<T>(string queueName, Action<T> onMessageReceived)
         {
             RetryPolicies.GetBasicRetryPolicy("MessageConsumer.Consume").Execute(async () =>
             {
                 var channel = await _connection.GetConnection().CreateChannelAsync();
                 channel?.QueueDeclareAsync(queue: queueName,
-                    durable: false, 
-                    exclusive: false, 
+                    durable: false,
+                    exclusive: false,
                     autoDelete: false);
 
-                var consumer = new AsyncEventingBasicConsumer(channel);
+                var consumer = new AsyncEventingBasicConsumer(channel!);
                 consumer.ReceivedAsync += async (sender, args) =>
                 {
                     var body = args.Body.ToArray();
@@ -39,7 +41,8 @@ namespace Messaging.Shared.Consumers
 
                     try
                     {
-                        onMessageReceived?.Invoke(message);
+                        var deserializedMessage = JsonSerializer.Deserialize<T>(message);
+                        onMessageReceived?.Invoke(deserializedMessage!);
                     }
                     catch (Exception ex)
                     {
@@ -48,10 +51,10 @@ namespace Messaging.Shared.Consumers
                     }
                 };
 
-                await channel.BasicConsumeAsync(queue: queueName, autoAck: true, consumer: consumer);
+                await channel!.BasicConsumeAsync(queue: queueName, autoAck: true, consumer: consumer);
                 _logger.LogInformation("Started consuming messages from queue: {Queue}", queueName);
             });
         }
-#pragma warning restore
+
     }
 }

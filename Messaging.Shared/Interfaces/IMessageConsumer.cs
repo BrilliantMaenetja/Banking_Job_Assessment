@@ -8,6 +8,6 @@ namespace Messaging.Shared.Interfaces
 {
     public interface IMessageConsumer
     {
-        void Consume(string queueName, Action<string> onMessageReceived);
+        void Consume<T>(string queueName, Action<T> onMessageReceived);
     }
 }
