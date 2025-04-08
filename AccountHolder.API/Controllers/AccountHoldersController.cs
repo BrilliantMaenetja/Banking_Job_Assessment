@@ -46,7 +46,19 @@ namespace AccountHolder.API.Controllers
             var createdAccountHolder = await _holderService.CreateAccountHolderAsync(accountHolder);
 
             //Send Message upon creation
-            _messageProducer.SendMessage(accountHolder, _queueName);
+            var message = new
+            {
+                Id = createdAccountHolder.Id,
+                Name = createdAccountHolder.Name,
+                Email = createdAccountHolder.Email,
+                PhoneNumber = createdAccountHolder.PhoneNumber,
+                DateOfBirth = createdAccountHolder.DateOfBirth,
+                Address = createdAccountHolder.Address,
+                CreatedAt = createdAccountHolder.CreatedAt,
+                UpdatedAt = createdAccountHolder.UpdatedAt,
+                Action = "AccountCreation"
+            };
+            _messageProducer.SendMessage(message, _queueName);
 
             return Ok(createdAccountHolder);
         }
@@ -65,19 +77,40 @@ namespace AccountHolder.API.Controllers
 
         [HttpPut]
         [Route("{id:int}")]
-
         public async Task<IActionResult> UpdateAccountHolder(int id, [FromBody] AccountHolderr accountHolder)
         {
             if (accountHolder == null || accountHolder.Id != id)
             {
                 return BadRequest("Account holder data is invalid");
             }
-            var updatedAccountHolder = await _holderService.UpdateAccountHolderAsync(accountHolder);
-            _messageProducer.SendMessage(accountHolder, _queueName);
-            if (updatedAccountHolder == null)
+
+            // Ensure the account holder exists before updating
+            var existingAccountHolder = await _holderService.GetAccountHolderByIdAsync(id);
+            if (existingAccountHolder == null)
             {
                 return NotFound($"Account holder with ID {id} not found");
             }
+
+            // Update the account holder
+
+            var updatedAccountHolder = await _holderService.UpdateAccountHolderAsync(id, accountHolder);
+
+            // Send Message upon update
+            var message = new
+            {
+                Id = updatedAccountHolder.Id,
+                Name = updatedAccountHolder.Name,
+                Email = updatedAccountHolder.Email,
+                PhoneNumber = updatedAccountHolder.PhoneNumber,
+                DateOfBirth = updatedAccountHolder.DateOfBirth,
+                Address = updatedAccountHolder.Address,
+                CreatedAt = updatedAccountHolder.CreatedAt,
+                UpdatedAt = updatedAccountHolder.UpdatedAt,
+                Action = "AccountUpdate"
+            };
+
+            _messageProducer.SendMessage(message, _queueName);
+
             return Ok(updatedAccountHolder);
         }
 

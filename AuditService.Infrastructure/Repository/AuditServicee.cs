@@ -1,4 +1,5 @@
-﻿using AuditService.Domain.Models;
+﻿using AuditService.Application.Services;
+using AuditService.Domain.Models;
 using AuditService.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace AuditService.Infrastructure.Repository
 {
-    public class AuditService
+    public class AuditServicee : IAuditService
     {
         private readonly AuditDbContext _context;
-        public AuditService(AuditDbContext context)
+        public AuditServicee(AuditDbContext context)
         {
             _context = context;
         }
@@ -27,12 +28,14 @@ namespace AuditService.Infrastructure.Repository
             await _context.Audits.AddAsync(audit);
             return await _context.SaveChangesAsync() > 0;
         }
-        public async Task<List<string>> GetActions(int invokerId)
+        public async Task<List<Audit>> GetActions(int invokerId)
         {
-            return await _context.Audits
+            var audits = await _context.Audits
                 .Where(a => a.InvokerID == invokerId)
-                .Select(a => a.Action.ToString())
                 .ToListAsync();
+
+            return audits;
         }
+
     }
 }

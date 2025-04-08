@@ -34,7 +34,7 @@ namespace AccountHolder.Infrastructure.Services
 
         public Task<AccountHolderr> GetAccountHolderByIdAsync(int id)
         {
-            var accountHolder = _context.AccountHolders.FirstOrDefaultAsync(x => x.Id == id);
+            var accountHolder = _context.AccountHolders.Where(x => x.Id == id ).FirstOrDefaultAsync();
             if (accountHolder == null)
             {
                 throw new KeyNotFoundException($"Account holder with ID {id} not found");
@@ -47,18 +47,23 @@ namespace AccountHolder.Infrastructure.Services
             return await _context.AccountHolders.ToListAsync();
         }
 
-        public async Task<AccountHolderr> UpdateAccountHolderAsync(AccountHolderr accountHolder)
+        public async Task<AccountHolderr> UpdateAccountHolderAsync(int id ,AccountHolderr accountHolder)
         {
             if (accountHolder == null)
             {
                 throw new ArgumentNullException(nameof(accountHolder));
             }
-            var existingAccountHolder = _context.AccountHolders.FirstOrDefaultAsync(x => x.Id == accountHolder.Id);
+            var existingAccountHolder = _context.AccountHolders.Where(x => x.Id == id).FirstOrDefault();
             if (existingAccountHolder == null)
             {
                 throw new KeyNotFoundException($"Account holder with ID {accountHolder.Id} not found");
             }
-            _context.Entry(existingAccountHolder).CurrentValues.SetValues(accountHolder);
+
+            // Detach the existing entity to avoid tracking conflicts
+            _context.Entry(existingAccountHolder).State = EntityState.Detached;
+
+
+            _context.AccountHolders.Update(accountHolder);
             await _context.SaveChangesAsync();
 
             return accountHolder;

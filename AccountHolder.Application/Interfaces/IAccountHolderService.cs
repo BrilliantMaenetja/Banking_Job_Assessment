@@ -12,6 +12,7 @@ namespace AccountHolder.Application.Interfaces
         Task<IEnumerable<AccountHolderr>> GetAllAccountHoldersAsync();
         Task<AccountHolderr> GetAccountHolderByIdAsync(int id);
         Task<AccountHolderr> CreateAccountHolderAsync(AccountHolderr accountHolder);
-        Task<AccountHolderr> UpdateAccountHolderAsync(AccountHolderr accountHolder);
+        Task<AccountHolderr> UpdateAccountHolderAsync(int id, AccountHolderr accountHolder);
+
     }
 }
