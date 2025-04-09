@@ -14,12 +14,10 @@ namespace BankAccountService.Infrastructure.Repository
     public class BankService : IBankService
     {
         private readonly BankAccountDbContext _context;
-        private readonly MessageProducer _messageProducer;
 
-        public BankService(BankAccountDbContext context , MessageProducer producer )
+        public BankService(BankAccountDbContext context  )
         {
             _context = context;
-            _messageProducer = producer;
         }
 
 
