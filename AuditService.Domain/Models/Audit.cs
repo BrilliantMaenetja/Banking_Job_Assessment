@@ -20,6 +20,7 @@ namespace AuditService.Domain.Models
     {
         AccountCreation,
         Withdrawal,
+        AccountUpdate,
         Logon
     }
 
