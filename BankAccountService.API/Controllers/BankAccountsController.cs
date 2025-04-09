@@ -1,5 +1,6 @@
 ﻿using BankAccountService.Application.Services;
 using BankAccountService.Domain.Models;
+using Messaging.Shared.Producers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,10 +11,14 @@ namespace BankAccountService.API.Controllers
     public class BankAccountsController : ControllerBase
     {
         private readonly IBankService _bankService;
+        private readonly ILogger<BankAccountsController> _logger;
+        private readonly MessageProducer _messageProducer;
 
-        public BankAccountsController(IBankService service)
+        public BankAccountsController(IBankService service, ILogger<BankAccountsController> logger , MessageProducer producer )
         {
             _bankService = service;
+            _logger = logger;
+            _messageProducer = producer;
         }
 
         [HttpGet]

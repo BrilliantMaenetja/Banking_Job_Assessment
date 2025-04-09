@@ -10,12 +10,22 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddScoped<IBankService, BankService>();
+<<<<<<< Updated upstream
 builder.Services.AddSqlServer<BankAccountDbContext>(builder.Configuration.GetConnectionString("DefaultConnection") ,
+=======
+builder.Services.AddSqlServer<BankAccountDbContext>(builder.Configuration.GetConnectionString("DefaultConnection"),
+>>>>>>> Stashed changes
     optionsAction => optionsAction.MigrationsAssembly("BankAccountService.Infrastructure"));
 builder.Services.AddHostedService<MessagingConsumerService>();
 
 builder.Services.AddRabbitMQMessaging();
 
+<<<<<<< Updated upstream
+=======
+// Register MessageProducer to resolve the dependency
+builder.Services.AddScoped<MessageProducer>();
+
+>>>>>>> Stashed changes
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

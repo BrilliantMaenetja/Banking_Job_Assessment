@@ -13,8 +13,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GatewayService", "GatewaySe
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AuthenticationService", "AuthenticationService", "{6B3CE505-E168-4198-A262-EE7FB64BA5CC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TransactionService", "TransactionService", "{D3F1C0BD-AC71-41AF-ACFD-D4DDA486C0EF}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{19349BE6-31FE-4B7B-82A1-00941E3A5427}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Messaging.Shared", "Messaging.Shared\Messaging.Shared.csproj", "{DAB2572E-0B45-4C6E-BF57-B1B94511A4F7}"
@@ -43,6 +41,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankAccountService.Infrastr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankAccountService.API", "BankAccountService.API\BankAccountService.API.csproj", "{BAC30B00-F2A6-474B-8D3D-BC12E29D6DBB}"
 EndProject
+<<<<<<< Updated upstream
+=======
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JwtAuthenticationManager.Common", "JwtAuthenticationManager\JwtAuthenticationManager.Common.csproj", "{E3C52441-13BD-4B08-9EAC-530EC9661619}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingApp.Gateway", "BankingApp.Gateway\BankingApp.Gateway.csproj", "{A92A6B4B-68AB-476B-BB03-3775EBD581D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JwtAuthenticationManager.API", "JwtAuthenticationManager.API\JwtAuthenticationManager.API.csproj", "{B4C6B1FA-2DA1-4307-80D6-B7E361196ED9}"
+EndProject
+>>>>>>> Stashed changes
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -101,6 +108,21 @@ Global
 		{BAC30B00-F2A6-474B-8D3D-BC12E29D6DBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BAC30B00-F2A6-474B-8D3D-BC12E29D6DBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BAC30B00-F2A6-474B-8D3D-BC12E29D6DBB}.Release|Any CPU.Build.0 = Release|Any CPU
+<<<<<<< Updated upstream
+=======
+		{E3C52441-13BD-4B08-9EAC-530EC9661619}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3C52441-13BD-4B08-9EAC-530EC9661619}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3C52441-13BD-4B08-9EAC-530EC9661619}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3C52441-13BD-4B08-9EAC-530EC9661619}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A92A6B4B-68AB-476B-BB03-3775EBD581D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A92A6B4B-68AB-476B-BB03-3775EBD581D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A92A6B4B-68AB-476B-BB03-3775EBD581D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A92A6B4B-68AB-476B-BB03-3775EBD581D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4C6B1FA-2DA1-4307-80D6-B7E361196ED9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4C6B1FA-2DA1-4307-80D6-B7E361196ED9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4C6B1FA-2DA1-4307-80D6-B7E361196ED9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4C6B1FA-2DA1-4307-80D6-B7E361196ED9}.Release|Any CPU.Build.0 = Release|Any CPU
+>>>>>>> Stashed changes
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -119,6 +141,12 @@ Global
 		{93574AA2-7833-4508-B83D-BC36F163AE2A} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{967665BB-70FB-41F9-8726-A147EA88D60E} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{BAC30B00-F2A6-474B-8D3D-BC12E29D6DBB} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+<<<<<<< Updated upstream
+=======
+		{E3C52441-13BD-4B08-9EAC-530EC9661619} = {6B3CE505-E168-4198-A262-EE7FB64BA5CC}
+		{A92A6B4B-68AB-476B-BB03-3775EBD581D8} = {F5F9B3B6-A352-4713-AB7A-F42527481EAF}
+		{B4C6B1FA-2DA1-4307-80D6-B7E361196ED9} = {6B3CE505-E168-4198-A262-EE7FB64BA5CC}
+>>>>>>> Stashed changes
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2BB100D2-C70B-4322-BADB-0E6969175007}
