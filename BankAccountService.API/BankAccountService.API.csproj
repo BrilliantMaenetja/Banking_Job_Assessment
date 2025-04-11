@@ -11,12 +11,13 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="RabbitMQ.Client" Version="7.1.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AuditService.Application\AuditService.Application.csproj" />
-    <ProjectReference Include="..\AuditService.Infrastructure\AuditService.Infrastructure.csproj" />
+    <ProjectReference Include="..\BankAccountService.Application\BankAccountService.Application.csproj" />
+    <ProjectReference Include="..\BankAccountService.Infrastructure\BankAccountService.Infrastructure.csproj" />
     <ProjectReference Include="..\Messaging.Shared\Messaging.Shared.csproj" />
   </ItemGroup>
 

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AccountHolder.Infrastructure.Migrations
 {
     [DbContext(typeof(AccountHolderDbContext))]
-    [Migration("20250407145154_AccountHolderFirstMigration")]
-    partial class AccountHolderFirstMigration
+    [Migration("20250408085932_AccountHolderThird")]
+    partial class AccountHolderThird
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,6 +44,10 @@ namespace AccountHolder.Infrastructure.Migrations
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("IdentityNo")
+                        .HasMaxLength(13)
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
